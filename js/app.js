@@ -10,14 +10,29 @@ getMealBtn.addEventListener('click',()=>{
 });
 
 const createMeal = meal => {
+    const ingredients = [];
+    for(i=1; i<=20; i++){
+        if(meal[`strIngredient${i}`]){
+            ingredients.push(
+                `${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`
+            )
+        }
+    }
     mealContainer.innerHTML = `
         <div class="row">
             <div class="column five">
                 <img src="${meal.strMealThumb}" alt="Meal Image" />
+                <p><strong>Category:</strong> ${meal.strCategory}</p>
+                <p><strong>Area:</strong> ${meal.strArea}</p>
+                <p><strong>Tags:</strong> ${meal.strTags.split(',').join(', ')}</p>
+                
+                <h5>Ingredients</h5>
+                <ul></ul>
             </div>
             <div class="column seven">
                 <h4>${meal.strMeal}</h4>
                 <p>${meal.strInstructions}</p>
+            </div>
         </div>
     `;
 }
